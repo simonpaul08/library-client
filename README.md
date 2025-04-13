@@ -1,8 +1,23 @@
-# React + Vite
+# Library Management System (Client)
+A role-based Library Management System with distinct user roles and permissions, allowing admins to onboard and manage readers efficiently.
+Leveraging React Js for the frontend.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Installation
+Clone the repo and install the dependencies using the following command:
 
-Currently, two official plugins are available:
+```bash
+npm install
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Environment Variables 
+Create a `.env.local` file in the root and declare the following variables with appropritae values, check .env.example file for reference
+
+```bash
+VITE_APP_API="your_backend_url"
+```
+
+# Run Command 
+Make sure to run the server first and once ready, use the command below to run the client (frontend)
+```bash
+npm run dev
+```
