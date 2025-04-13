@@ -1,6 +1,5 @@
 # Library Management System (Client)
 A role-based Library Management System with distinct user roles and permissions, allowing admins to onboard and manage readers efficiently.
-Leveraging React Js for the frontend.
 
 # Installation
 Clone the repo and install the dependencies using the following command:
