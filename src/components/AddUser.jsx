@@ -13,24 +13,24 @@ const AddUser = ({ closeModal, role, currentUser, retrieveUsers }) => {
     console.log(values);
     setIsLoading(true);
 
-    let url = `/${currentUser?.role}/onboard/${role === "owner" ? "admin": "reader"}`
+    let url = `/${currentUser?.role}/onboard/${role === "owner" ? "admin" : "reader"}`
     let body = { user: values?.email }
 
     try {
       const res = await privateInstance.post(url, body);
-      if (res.data){
+      if (res.data) {
         closeModal()
         retrieveUsers()
         toast.success(res.data?.message, {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
 
     } catch (e) {
@@ -79,11 +79,13 @@ const AddUser = ({ closeModal, role, currentUser, retrieveUsers }) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-close-wrapper">
+          <h3 className="modal-content-title">
+            Invite {role === "admin" ? "Reader" : "Admin"}
+          </h3>
           <IoMdClose className="modal-close" onClick={closeModal} />
         </div>
-        <h3 className="modal-content-title">
-          Invite {role === "admin" ? "Reader" : "Admin"}
-        </h3>
+
+        <div className="modal-body">
         <form className="modal-form" onSubmit={formik.handleSubmit}>
           <div className="modal-form-item">
             <input
@@ -107,6 +109,8 @@ const AddUser = ({ closeModal, role, currentUser, retrieveUsers }) => {
             )}
           </button>
         </form>
+        </div>
+
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ const Books = () => {
   const [selectedBook, setSelectedBook] = useState();
   const [searchBook, setSearchBook] = useState("")
   const { privateInstance } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(false);
 
   // close modal
   const closeModal = () => {
@@ -32,6 +33,7 @@ const Books = () => {
 
   // retrieve books
   const RetrieveBooks = async () => {
+    setIsLoading(true)
     try {
       const res = await privateInstance.get(`/book/lib/${currentUser?.libId}`);
       if (res.data) {
@@ -63,6 +65,8 @@ const Books = () => {
           theme: "light",
         });
       }
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -108,7 +112,7 @@ const Books = () => {
           theme: "light",
         });
       }
-    }
+    } 
   };
   // handle isEdit
   const handleIsEdit = (id) => {
@@ -183,6 +187,7 @@ const Books = () => {
           list={filteredList}
           deleteBook={deleteBook}
           handleBookInfo={handleBookInfo}
+          isLoading={isLoading}
         />
       </div>
     </>

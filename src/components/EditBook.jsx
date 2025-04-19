@@ -85,67 +85,69 @@ const EditBook = ({ closeModal, book, RetrieveBooks }) => {
         <div className="modal">
             <div className="modal-content modal-content-alt">
                 <div className="modal-close-wrapper">
+                    <h3 className="modal-content-title">Edit Inventory</h3>
                     <IoMdClose className="modal-close" onClick={closeModal} />
                 </div>
-                <h3 className="modal-content-title">Edit Inventory</h3>
-                <form className="modal-form" onSubmit={formik.handleSubmit}>
-                    <div className="modal-form-item">
-                        <input
-                            type="text"
-                            className="form-input-alt"
-                            name="title"
-                            id="title"
-                            placeholder="Enter Book Title"
-                            value={formik.values.title}
-                            onChange={formik.handleChange}
-                        />
-                        <p>{formik.errors.title || ""}</p>
-                    </div>
-                    <div className="modal-form-item">
-                        <input
-                            type="text"
-                            className="form-input-alt"
-                            name="authors"
-                            id="authors"
-                            placeholder="Authors separated by comma"
-                            value={formik.values.authors}
-                            onChange={formik.handleChange}
-                        />
-                        <p>{formik.errors.authors || ""}</p>
-                    </div>
-                    <div className="modal-form-item">
-                        <input
-                            type="text"
-                            className="form-input-alt"
-                            name="publisher"
-                            id="publisher"
-                            placeholder="Enter Publisher Name"
-                            value={formik.values.publisher}
-                            onChange={formik.handleChange}
-                        />
-                        <p>{formik.errors.publisher || ""}</p>
-                    </div>
-                    <div className="modal-form-item">
-                        <input
-                            type="text"
-                            className="form-input-alt"
-                            name="version"
-                            id="version"
-                            placeholder="Enter Book Version"
-                            value={formik.values.version}
-                            onChange={formik.handleChange}
-                        />
-                        <p>{formik.errors.version || ""}</p>
-                    </div>
-                    <div className="modal-form-item">
-                        <input type="text" className="form-input-alt" name="totalCopies" id="totalCopies" placeholder="Total Copies"
-                            value={formik.values.totalCopies} onChange={formik.handleChange} />
+                <div className="modal-body">
+                    <form className="modal-form" onSubmit={formik.handleSubmit}>
+                        <div className="modal-form-item">
+                            <input
+                                type="text"
+                                className="form-input-alt"
+                                name="title"
+                                id="title"
+                                placeholder="Enter Book Title"
+                                value={formik.values.title}
+                                onChange={formik.handleChange}
+                            />
+                            <p>{formik.errors.title || ""}</p>
+                        </div>
+                        <div className="modal-form-item">
+                            <input
+                                type="text"
+                                className="form-input-alt"
+                                name="authors"
+                                id="authors"
+                                placeholder="Authors separated by comma"
+                                value={formik.values.authors}
+                                onChange={formik.handleChange}
+                            />
+                            <p>{formik.errors.authors || ""}</p>
+                        </div>
+                        <div className="modal-form-item">
+                            <input
+                                type="text"
+                                className="form-input-alt"
+                                name="publisher"
+                                id="publisher"
+                                placeholder="Enter Publisher Name"
+                                value={formik.values.publisher}
+                                onChange={formik.handleChange}
+                            />
+                            <p>{formik.errors.publisher || ""}</p>
+                        </div>
+                        <div className="modal-form-item">
+                            <input
+                                type="text"
+                                className="form-input-alt"
+                                name="version"
+                                id="version"
+                                placeholder="Enter Book Version"
+                                value={formik.values.version}
+                                onChange={formik.handleChange}
+                            />
+                            <p>{formik.errors.version || ""}</p>
+                        </div>
+                        <div className="modal-form-item">
+                            <input type="text" className="form-input-alt" name="totalCopies" id="totalCopies" placeholder="Total Copies"
+                                value={formik.values.totalCopies} onChange={formik.handleChange} />
                             <p>{formik.errors.totalCopies}</p>
-                    </div>
-                    <button type="submit" className="modal-form-btn">
-                        {isLoading ? <Loader /> : <>{"Submit"}</>}
-                    </button>
-                </form>
+                        </div>
+                        <button type="submit" className="modal-form-btn">
+                            {isLoading ? <Loader /> : <>{"Submit"}</>}
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

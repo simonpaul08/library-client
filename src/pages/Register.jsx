@@ -6,12 +6,13 @@ import VerifyOTP from "../components/VerifyOTP";
 import { useState } from "react";
 import Loader from "../components/loader/Loader";
 import { useAuthContext } from "../context/AuthContext";
+import DemoLogin from "../components/auth/DemoLogin";
 
 const Register = () => {
 
-    const [isModal, setIsModal] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const { publicInstance } = useAuthContext()
+  const [isModal, setIsModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { publicInstance } = useAuthContext()
 
   // handle submit
   const handleSubmit = async (values) => {
@@ -61,9 +62,9 @@ const Register = () => {
           progress: undefined,
           theme: "light",
         });
-      } 
-    }finally {
-        setIsLoading(false)
+      }
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -84,7 +85,7 @@ const Register = () => {
 
   return (
     <>
-      {isModal && <VerifyOTP setIsModal={setIsModal} email={formik.values.email}/>}
+      {isModal && <VerifyOTP setIsModal={setIsModal} email={formik.values.email} />}
       <ToastContainer
         position="top-right"
         autoClose={1500}
@@ -103,7 +104,7 @@ const Register = () => {
             <div className="auth-content-left">
               <h1 className="auth-content-title">Register Your Own Library</h1>
               <p className="auth-content-para">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit dolor sit amet dolor sit amet.
+                Setup your own personalized digital library 
               </p>
               <form className="auth-form" onSubmit={formik.handleSubmit}>
                 <div className="form-item">
@@ -137,6 +138,7 @@ const Register = () => {
               <p className="form-redirect">
                 Already have an account ? <Link to="/login">Login</Link>
               </p>
+              <DemoLogin />
             </div>
             <div className="auth-content-right"></div>
           </div>

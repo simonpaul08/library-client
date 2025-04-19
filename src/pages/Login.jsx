@@ -6,6 +6,7 @@ import VerifyOTP from "../components/VerifyOTP";
 import { ToastContainer, toast } from "react-toastify";
 import Loader from "../components/loader/Loader";
 import { useAuthContext } from "../context/AuthContext";
+import DemoLogin from "../components/auth/DemoLogin";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -123,6 +124,7 @@ const Login = () => {
               <p className="form-redirect">
                 Don't have an account ? <Link to="/">Register</Link>
               </p>
+              <DemoLogin />
             </div>
             <div className="auth-content-right"></div>
           </div>

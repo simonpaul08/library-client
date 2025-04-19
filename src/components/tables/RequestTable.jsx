@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCheck, FaTrash } from "react-icons/fa";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
+import Loader from "../loader/Loader";
 
-const RequestTable = ({ requests, retrieveRequests }) => {
+const RequestTable = ({ requests, retrieveRequests, isLoading}) => {
     const { currentUser, privateInstance } = useAuthContext();
 
     // handle reject request
@@ -119,6 +120,7 @@ const RequestTable = ({ requests, retrieveRequests }) => {
                     </tr>
                 </thead>
                 <tbody>
+                    {isLoading && requests?.length === 0 && <Loader />}
                     {requests?.map((r) => {
                         const requestDate = new Date(r?.requestDate).toLocaleDateString();
                         const approvalDate = r?.approvalDate

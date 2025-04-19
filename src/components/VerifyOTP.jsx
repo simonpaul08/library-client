@@ -51,7 +51,7 @@ const VerifyOTP = ({ setIsModal, email }) => {
         });
       }
     } finally {
-        setIsLoading(false)
+      setIsLoading(false)
     }
   };
 
@@ -70,7 +70,11 @@ const VerifyOTP = ({ setIsModal, email }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <h3 className="modal-content-title">Verify OTP</h3>
+        <div className="modal-close-wrapper">
+          <h3 className="modal-content-title">Verify OTP</h3>
+          <p></p>
+        </div>
+        <div className="modal-body">
         <form className="modal-form" onSubmit={formik.handleSubmit}>
           <div className="modal-form-item">
             <input
@@ -85,9 +89,10 @@ const VerifyOTP = ({ setIsModal, email }) => {
             <p>{formik.errors.otp || ""}</p>
           </div>
           <button type="submit" className="modal-form-btn">
-            {isLoading ? <Loader />: "Submit"}
+            {isLoading ? <Loader /> : "Submit"}
           </button>
         </form>
+        </div>
       </div>
     </div>
   );

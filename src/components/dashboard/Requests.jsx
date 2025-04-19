@@ -7,9 +7,10 @@ import { handleSortByStatus } from "../../utils/utils";
 const Requests = () => {
 
   const [requests, setRequests] = useState([]);
-  const { privateInstance } = useAuthContext()
-
+  const { privateInstance, currentUser } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(false);
   const retrieveRequests = async () => {
+    setIsLoading(true)
     try {
       const res = await privateInstance.get("/user/issues")
       if (res.data) {
@@ -41,6 +42,8 @@ const Requests = () => {
           theme: "light",
         });
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -63,7 +66,10 @@ const Requests = () => {
         theme="light"
       />
       <div className="dashboard-content">
-        <RequestTable requests={requests} retrieveRequests={retrieveRequests}/>
+        {currentUser?.role === "reader" && <div className="request-note">
+          <p>*only associated admin can approve the request</p>
+        </div>}
+        <RequestTable requests={requests} retrieveRequests={retrieveRequests} isLoading={isLoading}/>
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import Book from "../Book";
 import { useAuthContext } from "../../context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import { handleSearch } from "../../utils/utils";
+import Loader from "../loader/Loader";
 
 const Home = () => {
   const [isModal, setIsModal] = useState(false);
@@ -15,6 +16,7 @@ const Home = () => {
   const [filteredList, setFilteredList] = useState([])
   const [searchBook, setSearchBook] = useState("");
   const { privateInstance } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(false);
 
   // close modal
   const closeModal = () => setIsModal(false);
@@ -24,7 +26,7 @@ const Home = () => {
 
   // retrieve users
   const retrieveUsers = async () => {
-
+    setIsLoading(true)
     let url = currentUser?.role === "reader" ? `/book/lib/${currentUser?.libId}` : `${currentUser?.role}/${currentUser?.role === "owner" ? "admin" : "reader"}/list`
     try {
       const res = await privateInstance.get(url);
@@ -57,6 +59,8 @@ const Home = () => {
           theme: "light",
         });
       }
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -72,7 +76,6 @@ const Home = () => {
   useEffect(() => {
     if (list?.length === 0) {
       retrieveUsers();
-      console.log("fire")
     }
 
     return () => {
@@ -105,7 +108,7 @@ const Home = () => {
               <FaUserPlus color="#fff" className="add-admin-icon" /> Add Admin
             </button>
           </div>
-          <UserTable list={list} />
+          <UserTable list={list} isLoading={isLoading}/>
         </div>
       )}
 
@@ -117,7 +120,7 @@ const Home = () => {
               <FaUserPlus color="#fff" className="add-reader-icon" /> Add Reader
             </button>
           </div>
-          <UserTable list={list} />
+          <UserTable list={list} isLoading={isLoading}/>
         </div>
       )}
 
@@ -142,6 +145,7 @@ const Home = () => {
               </form>
             </div>
           </div>
+          {isLoading && filteredList.length === 0 && <Loader />}
           <div className="books-grid">
             {filteredList?.map(book => {
               return <Book book={book} key={book?.isbn} />

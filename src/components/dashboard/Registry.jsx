@@ -7,9 +7,11 @@ import { handleSortByIssueStatus } from "../../utils/utils";
 const Registry = () => {
 
   const [registry, setRegistry] = useState([]);
-  const { privateInstance } = useAuthContext()
+  const { privateInstance } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const retrieveRegistry = async () => {
+    setIsLoading(true)
     try {
       const res = await privateInstance.get("/user/registry")
       if(res.data){
@@ -42,6 +44,8 @@ const Registry = () => {
           theme: "light",
         });
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -79,7 +83,7 @@ const Registry = () => {
             </form>
           </div>
         </div> */}
-        <RegistryTable registry={registry}/>
+        <RegistryTable registry={registry} isLoading={isLoading}/>
       </div>
     </>
   );

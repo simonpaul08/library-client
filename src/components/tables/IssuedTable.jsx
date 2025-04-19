@@ -1,8 +1,9 @@
 import React from 'react'
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../../context/AuthContext';
+import Loader from '../loader/Loader';
 
-const IssuedTable = ({ registry, retrieveRegistry }) => {
+const IssuedTable = ({ registry, retrieveRegistry, isLoading }) => {
 
     const { privateInstance } = useAuthContext()
 
@@ -68,6 +69,7 @@ const IssuedTable = ({ registry, retrieveRegistry }) => {
                     </tr>
                 </thead>
                 <tbody>
+                    {isLoading && registry?.length === 0 && <Loader />}
                     {registry?.map(r => {
 
                         const issueDate = new Date(r?.issueDate).toLocaleDateString();

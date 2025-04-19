@@ -1,6 +1,7 @@
 import React from 'react'
+import Loader from '../loader/Loader';
 
-const RegistryTable = ({ registry }) => {
+const RegistryTable = ({ registry, isLoading }) => {
     return (
         <div className='registry-table'>
             <table>
@@ -16,6 +17,7 @@ const RegistryTable = ({ registry }) => {
                     </tr>
                 </thead>
                 <tbody>
+                    {isLoading && registry?.length === 0 && <Loader />}
                     {registry?.map(r => {
 
                         const issueDate = new Date(r?.issueDate).toLocaleDateString();

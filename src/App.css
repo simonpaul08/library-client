@@ -12,10 +12,10 @@
   z-index: 100;
 }
 .modal-content {
-  width: 350px;
-  padding: 2rem;
+  width: 400px;
+  padding: 1.25rem 1.95rem;
   background-color: var(--color-white);
-  border-radius: 4px;
+  border-radius: 8px;
 }
 .modal-content-alt {
   width: 400px;
@@ -24,14 +24,21 @@
   text-align: center;
 }
 .modal-close-wrapper {
-  text-align: right;
-  margin-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dedede;
+  padding: 0.65rem 0;
 }
 .modal-close {
   font-size: 1.25rem;
   color: var(--color-gray-dark);
   cursor: pointer;
   font-weight: 500;
+}
+.modal-body {
+  padding: 1rem 0;
 }
 .modal-image-wrapper {
   text-align: center;
@@ -40,14 +47,13 @@
   width: 100%;
 }
 .modal-content-title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   text-align: center;
-  letter-spacing: 1px;
-  margin-bottom: 2rem;
+  font-weight: 500;
 }
 .modal-form-item {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 .modal-form-item p {
   color: red;
@@ -111,7 +117,6 @@
   font-weight: 500;
   margin-bottom: 1rem;
   line-height: 1.45;
-  letter-spacing: 1.15px;
 }
 .auth-content-para {
   font-size: 1rem;
@@ -180,12 +185,27 @@
   font-size: 0.95rem;
   color: var(--color-black);
   padding-left: 0.65rem;
-  margin-bottom: 4rem;
 }
 .form-redirect a {
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 600;
+}
+.demo-login {
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  font-size: 1.25rem;
+  padding: 0.85rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.demo-login:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+.demo-login-btn {
+  width: 100%;
+  margin-top: 0.75rem;
 }
 
 /* Sidebar */
@@ -371,6 +391,15 @@
 .users-table {
   overflow-x: auto;
 }
+.request-note {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.request-note p {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -394,11 +423,20 @@ tr {
   background-color: var(--color-white);
   border-bottom: 2px solid #f1f1f1;
 }
+tbody {
+  width: 100%;
+}
 tbody tr:last-child {
   border-bottom: none;
 }
 tbody td {
   color: #838383;
+}
+.table-spinner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 th {

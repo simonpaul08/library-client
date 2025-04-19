@@ -6,8 +6,10 @@ import { useAuthContext } from "../../context/AuthContext";
 const IssuedBooks = () => {
     const [registry, setRegistry] = useState([]);
     const { privateInstance } = useAuthContext()
+    const [isLoading, setIsLoading] = useState(false);
 
     const retrieveRegistry = async () => {
+        setIsLoading(true)
         try {
             const res = await privateInstance.get("/user/registry");
             if (res.data) {
@@ -38,6 +40,8 @@ const IssuedBooks = () => {
                     theme: "light",
                 });
             }
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -60,7 +64,7 @@ const IssuedBooks = () => {
                 theme="light"
             />
             <div className="dashboard-content">
-                <IssuedTable registry={registry} retrieveRegistry={retrieveRegistry}/>
+                <IssuedTable registry={registry} retrieveRegistry={retrieveRegistry} isLoading={isLoading}/>
             </div>
         </>
     );
