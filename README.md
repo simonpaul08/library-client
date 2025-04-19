@@ -1,5 +1,7 @@
 # Library Management System (Client)
-A role-based Library Management System with distinct user roles and permissions, allowing admins to onboard and manage readers efficiently.
+A role-based Library Management System with distinct user roles and permissions, allowing admins to onboard and manage readers efficiently. Leveraging React for the frontend to provide an intuitive UI for users to search books, manage checkouts, view borrowing history, and interact with the system in real time.
+
+Server Repo URL - https://github.com/simonpaul08/library-server
 
 # Installation
 Clone the repo and install the dependencies using the following command:
