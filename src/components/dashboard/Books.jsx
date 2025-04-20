@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { handleSearch } from "../../utils/utils";
 import { useAuthContext } from "../../context/AuthContext";
 import BookInfo from "../BookInfo";
+import FullScreenLoader from "../fullScreenLoader/FullScreenLoader";
 
 const Books = () => {
   const [isModal, setIsModal] = useState(false);
@@ -19,6 +20,7 @@ const Books = () => {
   const [searchBook, setSearchBook] = useState("")
   const { privateInstance } = useAuthContext()
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // close modal
   const closeModal = () => {
@@ -72,6 +74,7 @@ const Books = () => {
 
   // handle delete book
   const deleteBook = async (id) => {
+    setIsDeleting(true)
     try {
       const res = await privateInstance.delete(`/admin/delete/book/${id}`);
       if (res.data) {
@@ -112,7 +115,9 @@ const Books = () => {
           theme: "light",
         });
       }
-    } 
+    } finally {
+      setIsDeleting(false)
+    }
   };
   // handle isEdit
   const handleIsEdit = (id) => {
@@ -130,10 +135,10 @@ const Books = () => {
 
 
   useEffect(() => {
-    if(searchBook !== ""){
+    if (searchBook !== "") {
       const filtered = handleSearch(searchBook, list)
       setFilteredList(filtered)
-    }else {
+    } else {
       setFilteredList(list)
     }
   }, [searchBook])
@@ -156,11 +161,13 @@ const Books = () => {
         theme="light"
       />
 
+      {isDeleting && <FullScreenLoader />}
+
       {isModal && (
         <AddBook closeModal={closeModal} RetrieveBooks={RetrieveBooks} />
       )}
       {isEdit && <EditBook closeModal={closeModal} book={selectedBook} RetrieveBooks={RetrieveBooks} />}
-      {isInfo && <BookInfo closeModal={closeModal} book={selectedBook}/>}
+      {isInfo && <BookInfo closeModal={closeModal} book={selectedBook} />}
       <div className="dashboard-content">
         <div className="add-book-wrapper">
           <button type="button" className="add-book" onClick={openModal}>

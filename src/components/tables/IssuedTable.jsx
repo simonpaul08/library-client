@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../../context/AuthContext';
 import Loader from '../loader/Loader';
+import FullScreenLoader from '../fullScreenLoader/FullScreenLoader';
 
 const IssuedTable = ({ registry, retrieveRegistry, isLoading }) => {
 
-    const { privateInstance } = useAuthContext()
+    const { privateInstance } = useAuthContext();
+    const [isRequest, setIsRequest] = useState(false);
 
     // handle return book
     const handleReturnBook = async (id) => {
+        setIsRequest(true);
         let body = {
             isbn: id
         }
@@ -53,9 +56,13 @@ const IssuedTable = ({ registry, retrieveRegistry, isLoading }) => {
                     theme: "light",
                 });
             }
+        } finally {
+            setIsRequest(false);
         }
     }
     return (
+        <>
+        {isRequest && <FullScreenLoader />}
         <div className="issued-table">
             <table>
                 <thead>
@@ -90,6 +97,7 @@ const IssuedTable = ({ registry, retrieveRegistry, isLoading }) => {
                 </tbody>
             </table>
         </div>
+        </>
     )
 }
 

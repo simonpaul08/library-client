@@ -30,7 +30,9 @@ const BookTable = ({ handleIsEdit, list, deleteBook, handleBookInfo, isLoading }
                 <td>{l?.version}</td>
                 <td>{l?.totalCopies}</td>
                 <td>{l?.availableCopies}</td>
-                <td><FaEdit className="table-action-icon" color="#176B87" title="Edit Book" onClick={() => handleIsEdit(l?.isbn)} /> <FaTrash className="table-action-icon" color="#dc3545" title="Delete Book" onClick={() => deleteBook(l?.isbn)} />
+                <td>
+                  <FaEdit className="table-action-icon" color="#176B87" title="Edit Book" onClick={() => handleIsEdit(l?.isbn)} />
+                  <FaTrash className="table-action-icon" color="#dc3545" title="Delete Book" onClick={() => deleteBook(l?.isbn)} />
                   <FaInfoCircle className="table-action-icon" title="Book Info" onClick={() => handleBookInfo(l?.isbn)} /> </td>
               </tr>
             )

@@ -3,12 +3,15 @@ import { FaCheck, FaTrash } from "react-icons/fa";
 import { useAuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import Loader from "../loader/Loader";
+import FullScreenLoader from "../fullScreenLoader/FullScreenLoader";
 
 const RequestTable = ({ requests, retrieveRequests, isLoading}) => {
     const { currentUser, privateInstance } = useAuthContext();
+    const [isRequest, setIsRequest] = useState(false);
 
     // handle reject request
     const handleRejectRequest = async (id) => {
+        setIsRequest(true)
         let body = {
             reqId: id,
         };
@@ -53,11 +56,14 @@ const RequestTable = ({ requests, retrieveRequests, isLoading}) => {
                     theme: "light",
                 });
             }
+        } finally {
+            setIsRequest(false);
         }
     };
 
     // handle approve request 
     const handleApproveRequest = async (id, type) => {
+        setIsRequest(true)
         let body = {
             reqId: id,
         };
@@ -102,9 +108,13 @@ const RequestTable = ({ requests, retrieveRequests, isLoading}) => {
                     theme: "light",
                 });
             }
+        } finally {
+            setIsRequest(false)
         }
     }
     return (
+        <>
+        {isRequest && <FullScreenLoader />}
         <div className="request-table">
             <table>
                 <thead>
@@ -164,6 +174,7 @@ const RequestTable = ({ requests, retrieveRequests, isLoading}) => {
                 </tbody>
             </table>
         </div>
+        </>
     );
 };
 

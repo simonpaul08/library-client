@@ -9,6 +9,7 @@ const Requests = () => {
   const [requests, setRequests] = useState([]);
   const { privateInstance, currentUser } = useAuthContext()
   const [isLoading, setIsLoading] = useState(false);
+  
   const retrieveRequests = async () => {
     setIsLoading(true)
     try {
